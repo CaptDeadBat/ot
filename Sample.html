@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- OneTrust Cookies Consent Notice start for news18.com -->
+<!-- OneTrust Cookies Consent Notice start -->
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="0194cfd4-e018-764f-a7e2-c0c033394fb7">
+</script>
+<!-- OneTrust Cookies Consent Notice end -->
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for news18.com -->
+
+<script>
+
+    var consentState, consentString, has_amp_key = false, isTCF2 = false, isFirst = true;
+    window.parent.postMessage(
+      {
+        sentinel: 'amp',
+        type: 'send-consent-data'
+      },
+      '*'
+    );
+    window.addEventListener('message', function (event) {
+      // will fetch only if AMP key is present
+      if (!isAmpMessage(event, 'consent-data')) {
+        return
+      }
+      has_amp_key = true;
+    });
+
+    function OptanonWrapper() {
+      // Check if it's CMP or TCF
+      if (typeof __cmp === "function") {
+        __cmp("getConsentData", Array, function (e) {
+          consentString = e.consentData;
+        });
+        isTCF2 = false;
+      }
+      if (typeof __tcfapi === "function") {
+        __tcfapi("getTCData", 2, (tcData, success) => {
+          if (success) {
+            consentString = tcData.tcString;
+          } else {
+          }
+          isTCF2 = true;
+        });
+      }
+      initialiseBtnHandlers();
+      window.addEventListener('OneTrustPCLoaded', function () {
+        initialiseBtnHandlers();
+      });
+
+      if (!getCookie("OptanonAlertBoxClosed") && isFirst && !has_amp_key) {
+        isFirst = false;
+        if (Optanon.GetDomainData().ShowAlertNotice == false) {
+          send2Amp(consentString);
+        }
+      } else if (isFirst && has_amp_key) {
+        isFirst = false;
+        Optanon.ToggleInfoDisplay();
+      } else {
+        send2Amp(consentString);
+      }
+    }
+
+    function isAmpMessage(event, type) {
+      return (
+        event.source == window.parent &&
+        event.origin != window.location.origin &&
+        event.data &&
+        event.data.sentinel == 'amp' &&
+        event.data.type == type
+      );
+    }
+
+    function initialiseBtnHandlers() {
+      var PCCloseButton = document.getElementById("close-pc-btn-handler");
+      var PCbutton = document.getElementById("onetrust-pc-btn-handler");
+      var PClink = document.getElementsByClassName("ot-sdk-show-settings");
+      var listButton = document.getElementsByClassName(
+        "onetrust-vendors-list-handler"
+      );
+      PCbutton &&
+        PCbutton.addEventListener("click", function () {
+          iFrameState("consent-ui", "enter-fullscreen");
+        });
+
+      PCCloseButton &&
+        PCCloseButton.addEventListener("click", function () {
+          iFrameState("consent-response", "dismiss");
+        });
+
+      for (var i = 0; i < listButton.length; i++) {
+        listButton[i] &&
+          listButton[i].addEventListener("click", function () {
+            iFrameState("consent-ui", "enter-fullscreen");
+          });
+      }
+
+      for (var i = 0; i < PClink.length; i++) {
+        PClink[i] &&
+          PClink[i].addEventListener("click", function () {
+            iFrameState("consent-ui", "enter-fullscreen");
+          });
+      }
+    }
+    function iFrameState(type, action) {
+      window.parent.postMessage({
+        type: type,
+        action: action,
+        initialHeight: "60vh"
+      }, '*');
+    }
+    function send2Amp(consentString) {
+      var payload = {
+        type: 'consent-response',
+        info: consentString,
+      };
+      if (OptanonActiveGroups.indexOf('C0001') === -1) {
+        payload.action = 'reject';
+      }
+      if(OptanonActiveGroups.indexOf('C0001') !== -1) {
+        payload.action = 'accept';
+      }
+      if (isTCF2) {
+        payload.consentMetadata = {
+          "consentStringType": 2,
+          "gdprApplies": true,
+          "additionalConsent": getCookie("OTAdditionalConsentString"),
+        }
+      }
+      window.parent.postMessage(payload, "*");
+    }
+  </script>
+  <script>
+    function getCookie(name) {
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length == 2)
+        return parts.pop().split(";").shift();
+    }
+  </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            margin: 0;
+            padding: 0;
+            background-color: #444;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 1rem;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        main {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Website</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>About Me</h2>
+        <p>This is a simple website created using HTML and CSS.</p>
+    </main>
+    <footer>
+        <p>&copy; 2025 My First Website</p>
+    </footer>
+
+</body><!-- OneTrust Cookies Settings button start -->
+<button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</button>
+<!-- OneTrust Cookies Settings button end -->
+</html>
