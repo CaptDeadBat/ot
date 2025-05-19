@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cookie Test</title>
+</head>
+<body>
+  <h1>Cookie Test on GitHub Pages</h1>
+  <p id="cookie-status"></p>
+
+  <script>
+    // Function to get a cookie by name
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Check if cookie exists
+    let username = getCookie("username");
+
+    if (!username) {
+      // Set cookie if not found
+      document.cookie = "username=JohnDoe; path=/; max-age=86400"; // 1 day
+      document.getElementById("cookie-status").textContent = "Cookie set for the first time!";
+    } else {
+      document.getElementById("cookie-status").textContent = `Welcome back, ${username}!`;
+    }
+  </script>
+</body>
+</html>
