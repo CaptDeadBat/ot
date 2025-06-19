@@ -1,0 +1,43 @@
+<!doctype html>
+<html ⚡ lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AMP with Consent</title>
+  <link rel="canonical" href="self.html">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+  <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+</head>
+<body>
+
+<amp-consent id="onetrust-consent" layout="nodisplay">
+  <script type="application/json">
+    {
+      "consents": {
+        "onetrust": {
+          "promptIfUnknownForGeoGroup": "eea",
+          "promptUI": "onetrust-consent-ui"
+        }
+      }
+    }
+  </script>
+
+  <div id="onetrust-consent-ui">
+    <amp-iframe
+      width="1"
+      height="1"
+      layout="fill"
+      sandbox="allow-scripts allow-same-origin allow-popups"
+      resizable
+      src="https://consent.example.com/consent.html">
+      <div placeholder>Loading consent...</div>
+    </amp-iframe>
+  </div>
+</amp-consent>
+
+<p>Your page content goes here!</p>
+
+</body>
+</html>
