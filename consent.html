@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cookie Consent</title>
+  <script
+    src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+    data-domain-script="0196f7a1-66b9-7b1f-9909-4e6e4df06ba5"
+    type="text/javascript"
+    charset="UTF-8">
+  </script>
+  <script>
+    function sendConsentResponse(action) {
+      window.parent.postMessage(
+        {
+          type: 'consent-response',
+          action: action // 'accept' or 'reject'
+        },
+        '*'
+      );
+    }
+
+    function OptanonWrapper() {
+      // Automatically send acceptance once consent is granted
+      sendConsentResponse('accept');
+    }
+  </script>
+</head>
+<body>
+  <h2>Loading Consent...</h2>
+</body>
+</html>
