@@ -26,7 +26,6 @@
   </script>
 </amp-geo>
 
-<!-- 🍪 AMP Consent with Geo Override -->
 <amp-consent id="onetrust-consent" layout="nodisplay">
   <script type="application/json">
     {
@@ -45,7 +44,6 @@
     }
   </script>
 
-  <!-- Consent UI: iframe that hosts OneTrust -->
   <div id="onetrust-ui">
     <amp-iframe
       title="Consent Iframe"
@@ -58,7 +56,6 @@
     </amp-iframe>
   </div>
 
-  <!-- Optional post-consent UI -->
   <div id="after-consent-ui">
     <button on="tap:onetrust-consent.prompt">Manage Consent</button>
   </div>
