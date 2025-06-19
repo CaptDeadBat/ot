@@ -2,50 +2,50 @@
 <html ⚡ lang="en">
 <head>
   <meta charset="utf-8">
-  <title>AMP Consent with Geo</title>
+  <title>AMP Consent for India</title>
   <link rel="canonical" href="index.html">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   
-  <!-- AMP Components -->
+  <!-- Required AMP Components -->
   <script async custom-element="amp-geo" src="https://cdn.ampproject.org/v0/amp-geo-0.1.js"></script>
   <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
   <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
 </head>
 <body>
 
-<!-- AMP Geo Setup -->
+<!-- 🌐 AMP Geo targeting India -->
 <amp-geo layout="nodisplay">
   <script type="application/json">
     {
       "ISOCountryGroups": {
-        "eea": ["preset-eea", "unknown"]
+        "india": ["in", "unknown"]
       }
     }
   </script>
 </amp-geo>
 
-<!-- AMP Consent -->
+<!-- 🍪 AMP Consent with Geo Override -->
 <amp-consent id="onetrust-consent" layout="nodisplay">
   <script type="application/json">
-   {
-  "consents": {
-    "onetrust": {
-      "consentRequired": false,
-      "geoOverride": {
-        "eea": {
-          "consentRequired": true,
-          "promptUI": "onetrust-ui"
+    {
+      "consents": {
+        "onetrust": {
+          "consentRequired": false,
+          "geoOverride": {
+            "india": {
+              "consentRequired": true,
+              "promptUI": "onetrust-ui"
+            }
+          }
         }
-      }
+      },
+      "postPromptUI": "after-consent-ui"
     }
-  },
-  "postPromptUI": "after-consent-ui"
-}
-
   </script>
 
-  <!-- Consent UI -->
+  <!-- Consent UI: iframe that hosts OneTrust -->
   <div id="onetrust-ui">
     <amp-iframe
       title="Consent Iframe"
@@ -58,15 +58,15 @@
     </amp-iframe>
   </div>
 
-  <!-- Post-consent UI -->
+  <!-- Optional post-consent UI -->
   <div id="after-consent-ui">
     <button on="tap:onetrust-consent.prompt">Manage Consent</button>
   </div>
 </amp-consent>
 
-<!-- Page Content -->
-<h1>Welcome to AMP World 🌍</h1>
-<p>This is your beautiful, compliant AMP page!</p>
+<!-- Page content -->
+<h1>Hello, India! 🇮🇳</h1>
+<p>This AMP page is compliant and ready to collect consentt.</p>
 
 </body>
 </html>
