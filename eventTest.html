@@ -35,6 +35,13 @@ function OptanonWrapper() { }
       document.getElementById("cookie-status").textContent = `Welcome back, ${username}!`;
     }
   </script>
+  <script>
+    if(typeof window.OneTrust !== 'undefined'){
+      window.OneTrust.OnConsentChanged(()=>{
+        console.log("Consent Changed!!!!!!");
+      });
+    }
+  </script>
 <!-- OneTrust Cookies Settings button start -->
 <button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</button>
 <!-- OneTrust Cookies Settings button end -->
