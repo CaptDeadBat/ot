@@ -16,25 +16,7 @@ function OptanonWrapper() {
         // const consentData = JSON.parse(localStorage.ONETRUST_WEB_STORE)[0].CONSENT;
         // console.log(consentData); // Shows all category consents
         
-// Store previous consent state
-let previousConsent = {};
 
-// Listen for changes
-window.OneTrust.OnConsentChanged(function() {
-  const changed = [];
-
-  // Loop through known category IDs
-  const categoryIds = ["C0002", "C0003", "C0004"]; // Performance, Functional, Targeting
-  categoryIds.forEach(id => {
-    const current = OptanonActiveGroups.includes(id); // true if consented
-    if (previousConsent[id] !== undefined && previousConsent[id] !== current) {
-      changed.push({ id, from: previousConsent[id], to: current });
-    }
-    previousConsent[id] = current;
-  });
-
-  console.log("Changed categories:", changed);
-});
 
 
       });
@@ -62,6 +44,26 @@ window.OneTrust.OnConsentChanged(function() {
   //     console.log(typeof OneTrust.OnConsentChanged);
   //   }
   // });
+
+  // Store previous consent state
+let previousConsent = {};
+
+// Listen for changes
+window.OneTrust.OnConsentChanged(function() {
+  const changed = [];
+
+  // Loop through known category IDs
+  const categoryIds = ["C0002", "C0003", "C0004"]; // Performance, Functional, Targeting
+  categoryIds.forEach(id => {
+    const current = OptanonActiveGroups.includes(id); // true if consented
+    if (previousConsent[id] !== undefined && previousConsent[id] !== current) {
+      changed.push({ id, from: previousConsent[id], to: current });
+    }
+    previousConsent[id] = current;
+  });
+
+  console.log("Changed categories:", changed);
+});
 </script>
   
 </head>
