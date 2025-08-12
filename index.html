@@ -11,6 +11,17 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for captdeadbat.github.io/ot/index.html -->
+
+  <script>
+    if (typeof OneTrust !== "undefined" && typeof OneTrust.OnConsentChanged === "function") {
+  OneTrust.OnConsentChanged(() => {
+    console.log("Consent changed!");
+
+    // 🔧 Add your custom logic here
+    // For example, trigger analytics setup or update UI
+  });
+}
+  </script>
 </head>
 <body>
   <h1>Cookie Test on GitHub Pages</h1>
@@ -35,6 +46,8 @@ function OptanonWrapper() { }
       document.getElementById("cookie-status").textContent = `Welcome back, ${username}!`;
     }
   </script>
+  
+
 <!-- OneTrust Cookies Settings button start -->
 <button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</button>
 <!-- OneTrust Cookies Settings button end -->
