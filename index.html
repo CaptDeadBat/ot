@@ -13,6 +13,13 @@ function OptanonWrapper() {
       OneTrust.OnConsentChanged(() => {
         console.log("Consent changed!");
         // Your logic here
+        const consentData = JSON.parse(localStorage.ONETRUST_WEB_STORE)[0].CONSENT;
+        console.log(consentData); // Shows all category consents
+        
+        OneTrust.GetConsentStatus("C0001", function(status) {
+        console.log("Strictly Necessary:", status); // 1 = given, 0 = not given
+        });
+
       });
   }
     else{
