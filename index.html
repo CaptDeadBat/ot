@@ -16,9 +16,9 @@ function OptanonWrapper() {
         // const consentData = JSON.parse(localStorage.ONETRUST_WEB_STORE)[0].CONSENT;
         // console.log(consentData); // Shows all category consents
         
-        OneTrust.GetConsentStatus("C0001", function(status) {
-        console.log("Strictly Necessary:", status); // 1 = given, 0 = not given
-        });
+        const statuses = OneTrust.getPurposeConsentStatus(["C0002", "C0003"]);
+        console.log("Performance & Functional:", statuses);
+
 
       });
   }
