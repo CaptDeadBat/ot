@@ -8,23 +8,34 @@
 
 <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="0196e85b-d97f-7bb9-ac6c-a0a9f4f36438-test" ></script>
 <script type="text/javascript">
-function OptanonWrapper() { }
+function OptanonWrapper() {
+  if (typeof OneTrust !== "undefined" && typeof OneTrust.OnConsentChanged === "function") {
+      OneTrust.OnConsentChanged(() => {
+        console.log("Consent changed!");
+        // Your logic here
+      });
+    else{
+      console.log(typeof OneTrust);
+      console.log(typeof OneTrust.OnConsentChanged);
+    }
+    
+}
 </script>
 <!-- OneTrust Cookies Consent Notice end for captdeadbat.github.io/ot/index.html -->
 
 <!-- Your custom consent change listener -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    if (typeof OneTrust !== "undefined" && typeof OneTrust.OnConsentChanged === "function") {
-      OneTrust.OnConsentChanged(() => {
-        console.log("Consent changed!");
-        // Your logic here
-      });
-    }
-    else{
-      console.log(typeof OneTrust);
-      console.log(typeof OneTrust.OnConsentChanged);
-    }
+  // document.addEventListener("DOMContentLoaded", function () {
+  //   if (typeof OneTrust !== "undefined" && typeof OneTrust.OnConsentChanged === "function") {
+  //     OneTrust.OnConsentChanged(() => {
+  //       console.log("Consent changed!");
+  //       // Your logic here
+  //     });
+  //   }
+  //   else{
+  //     console.log(typeof OneTrust);
+  //     console.log(typeof OneTrust.OnConsentChanged);
+  //   }
   });
 </script>
   
