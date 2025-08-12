@@ -8,32 +8,24 @@
 
 <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="0196e85b-d97f-7bb9-ac6c-a0a9f4f36438-test" ></script>
 <script type="text/javascript">
-function OptanonWrapper() {
-  if (typeof OneTrust !== "undefined" && typeof OneTrust.OnConsentChanged === "function") {
-      OneTrust.OnConsentChanged(() => {
-        console.log("Consent changed!");
-        // Your logic here
-        // const consentData = JSON.parse(localStorage.ONETRUST_WEB_STORE)[0].CONSENT;
-        // console.log(consentData); // Shows all category consents
-        
-        // Store previous consent state
-        let previousConsent = {};
-        const changed = [];
+  function OptanonWrapper() {
+    let previousConsent = {};
 
-        // Loop through known category IDs
-        const categoryIds = ["C0002", "C0003", "C0004"]; // Performance, Functional, Targeting
-        categoryIds.forEach(id => {
-          const current = OptanonActiveGroups.includes(id); // true if consented
-          if (previousConsent[id] !== undefined && previousConsent[id] !== current) {
-            changed.push({ id, from: previousConsent[id], to: current });
-          }
-          previousConsent[id] = current;
-        });
-        console.log("Changed categories:", changed);
+    window.OneTrust.OnConsentChanged(function () {
+      const changed = [];
+      const categoryIds = ["C0002", "C0003", "C0004"]; // Performance, Functional, Targeting
+
+      categoryIds.forEach(id => {
+        const current = OptanonActiveGroups.includes(id);
+        if (previousConsent[id] !== undefined && previousConsent[id] !== current) {
+          changed.push({ id, from: previousConsent[id], to: current });
+        }
+        previousConsent[id] = current;
+      });
+
+      console.log("Changed categories:", changed);
     });
   }
-}
-    
 </script>
 <!-- OneTrust Cookies Consent Notice end for captdeadbat.github.io/ot/index.html -->
 
