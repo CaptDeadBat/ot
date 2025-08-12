@@ -16,36 +16,24 @@ function OptanonWrapper() {
         // const consentData = JSON.parse(localStorage.ONETRUST_WEB_STORE)[0].CONSENT;
         // console.log(consentData); // Shows all category consents
         
-  // Store previous consent state
-let previousConsent = {};
+        // Store previous consent state
+        let previousConsent = {};
+        const changed = [];
 
-// Listen for changes
-window.OneTrust.OnConsentChanged(function() {
-  const changed = [];
-
-  // Loop through known category IDs
-  const categoryIds = ["C0002", "C0003", "C0004"]; // Performance, Functional, Targeting
-  categoryIds.forEach(id => {
-    const current = OptanonActiveGroups.includes(id); // true if consented
-    if (previousConsent[id] !== undefined && previousConsent[id] !== current) {
-      changed.push({ id, from: previousConsent[id], to: current });
-    }
-    previousConsent[id] = current;
+        // Loop through known category IDs
+        const categoryIds = ["C0002", "C0003", "C0004"]; // Performance, Functional, Targeting
+        categoryIds.forEach(id => {
+          const current = OptanonActiveGroups.includes(id); // true if consented
+          if (previousConsent[id] !== undefined && previousConsent[id] !== current) {
+            changed.push({ id, from: previousConsent[id], to: current });
+          }
+          previousConsent[id] = current;
+        });
+        console.log("Changed categories:", changed);
+    });
   });
-
-  console.log("Changed categories:", changed);
-});
-
-
-
-      });
-  }
-    else{
-      console.log(typeof OneTrust);
-      console.log(typeof OneTrust.OnConsentChanged);
-    }
-    
 }
+    
 </script>
 <!-- OneTrust Cookies Consent Notice end for captdeadbat.github.io/ot/index.html -->
 
