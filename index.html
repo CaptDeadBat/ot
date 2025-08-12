@@ -12,16 +12,18 @@ function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for captdeadbat.github.io/ot/index.html -->
 
-  <script>
+<!-- Your custom consent change listener -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
     if (typeof OneTrust !== "undefined" && typeof OneTrust.OnConsentChanged === "function") {
-  OneTrust.OnConsentChanged(() => {
-    console.log("Consent changed!");
-
-    // 🔧 Add your custom logic here
-    // For example, trigger analytics setup or update UI
+      OneTrust.OnConsentChanged(() => {
+        console.log("Consent changed!");
+        // Your logic here
+      });
+    }
   });
-}
-  </script>
+</script>
+  
 </head>
 <body>
   <h1>Cookie Test on GitHub Pages</h1>
