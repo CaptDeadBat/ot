@@ -17,7 +17,7 @@
 
       categoryIds.forEach(id => {
         const current = OptanonActiveGroups.includes(id);
-        if (previousConsent[id] !== undefined && previousConsent[id] !== current) {
+        if ( previousConsent[id] !== current) {
           changed.push({ id, from: previousConsent[id], to: current });
         }
         previousConsent[id] = current;
